@@ -1,0 +1,59 @@
+:root {
+  --imperial-red: #e63946ff;
+  --honeydew: #f1faeeff;
+  --powder-blue: #a8dadcff;
+  --celadon-blue: #457b9dff;
+  --prussian-blue: #1d3557ff;
+}
+
+.body {
+  background-color: var(--imperial-red);
+  font-size: 16px;
+  line-height: 2.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--prussian-blue);
+  color: var(--honeydew);
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.header a {
+  text-decoration: none;
+  color: var(--honeydew);
+}
+
+.start-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--honeydew);
+  margin: 5rem 10rem;
+  border: 0.1rem solid var(--prussian-blue);
+  padding: 4rem;
+}
+
+.start-container h1 {
+  color: var(--imperial-red);
+  padding: 2rem;
+}
+.start-container h2 {
+  color: var(--prussian-blue);
+  text-align: justify;
+}
+
+.start-btn-container button {
+  margin: 2rem;
+  padding: 1rem;
+  background-color: var(--celadon-blue);
+  color: var(--honeydew);
+  font-size: 1.5rem;
+}
+
+.start-btn-container button:hover {
+  background-color: var(--prussian-blue);
+}
