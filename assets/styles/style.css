@@ -30,7 +30,8 @@
 
 .start-container,
 .question-container,
-.game-over-container {
+.game-over-container,
+.score-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -39,25 +40,36 @@
   margin: 10rem 8rem;
   border: 0.1rem solid var(--prussian-blue);
   padding: 4rem;
-  /* height: 40rem; */
+  height: 40rem;
 }
 
 .start-container h1,
-.question-container h3,
-.game-over-container h1 {
+.question-container h1,
+.game-over-container h1,
+.score-container h1 {
   color: var(--imperial-red);
   padding: 2rem;
   font-size: 2rem;
 }
 .start-container h2,
-.game-over-container h2 {
+.game-over-container h2,
+.score-container h2 {
   color: var(--prussian-blue);
   text-align: justify;
 }
 
+.start-container p,
+.score-container p {
+  padding: 2rem 0;
+  text-align: justify;
+  font-size: 1.2rem;
+  color: var(--prussian-blue);
+}
+
 .start-btn-container button,
-.game-over-container button {
-  margin: 2rem;
+.game-over-container button,
+.submit-score-container button {
+  margin: 1rem;
   padding: 1rem;
   background-color: var(--celadon-blue);
   color: var(--honeydew);
@@ -66,7 +78,8 @@
 
 .start-btn-container button:hover,
 .answers-container button:hover,
-.game-over-container button:hover {
+.game-over-container button:hover,
+.submit-score-container button:hover {
   background-color: var(--prussian-blue);
 }
 
@@ -92,6 +105,12 @@
   font-size: 1.2rem;
 }
 
+.submit-score-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 /*media queries properties for different viewport sizes*/
 @media screen and (max-width: 576px) {
   .header {
