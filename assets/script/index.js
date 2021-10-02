@@ -2,6 +2,24 @@ const startQuizBtn = document.querySelector("#start-button");
 const startQuizContainer = document.querySelector("#start-container");
 const main = document.querySelector("#main");
 
+//initialise timer
+let timeLeft = 5;
+
+//start timer function
+const startTimer = function () {
+  //target timer span on html file
+  const timerSpan = document.querySelector("#timer");
+  //decrement time value
+  const timerThick = function () {
+    timeLeft -= 1;
+    //update date timer on header
+    timerSpan.textContent = timeLeft;
+  };
+
+  const timer = setInterval(timerThick, 1000);
+  console.log(timer);
+};
+
 //validate answer function here
 const validateAnswer = function () {
   console.log("Answer clicked");
@@ -46,6 +64,9 @@ const renderQuestion = function () {
 const startQuiz = function () {
   //remove start quiz container
   startQuizContainer.remove();
+
+  //start timer function
+  startTimer();
 
   //render quiz questions
   renderQuestion();
