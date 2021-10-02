@@ -2,6 +2,34 @@ const startQuizBtn = document.querySelector("#start-button");
 const startQuizContainer = document.querySelector("#start-container");
 const main = document.querySelector("#main");
 
+//store questions in an object array
+const questions = [
+  {
+    question: "Question1",
+    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    correctAnswer: "answer2",
+  },
+  {
+    question: "Question1",
+    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    correctAnswer: "answer1",
+  },
+  {
+    question: "Question1",
+    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    correctAnswer: "answer4",
+  },
+  {
+    question: "Question1",
+    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    correctAnswer: "answer3",
+  },
+  {
+    question: "Question1",
+    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    correctAnswer: "answer2",
+  },
+];
 //initialise timer
 let timeLeft = 5;
 
