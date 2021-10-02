@@ -5,6 +5,30 @@ const main = document.querySelector("#main");
 //initialise timer
 let timeLeft = 5;
 
+//render game over container
+const gameOver = function () {
+  //create game over container elements
+  const gameOverText = document.createElement("p");
+  gameOverText.textContent =
+    "If you want to try the quiz again, click the 'Retake quiz' button.";
+
+  const gameOverHeadingTwo = document.createElement("h2");
+  gameOverHeadingTwo.textContent = "Your time is up!";
+
+  const gameOverHeadingOne = document.createElement("h1");
+  gameOverHeadingOne.textContent = "Game Over";
+
+  const gameOverContainer = document.createElement("div");
+  gameOverContainer.setAttribute("id", "game-over-container");
+  gameOverContainer.setAttribute("class", "game-over-container");
+
+  //append game over container elements
+  gameOverContainer.appendChild(gameOverHeadingOne);
+  gameOverContainer.appendChild(gameOverHeadingTwo);
+  gameOverContainer.appendChild(gameOverText);
+  main.appendChild(gameOverContainer);
+};
+
 //start timer function
 const startTimer = function () {
   //target timer span on html file
@@ -17,7 +41,9 @@ const startTimer = function () {
       //remove quiz container
       const questionContainer = document.querySelector("#question-container");
       questionContainer.remove();
+
       //render game over
+      gameOver();
     } else {
       timeLeft -= 1;
       //update date timer on header
