@@ -8,6 +8,9 @@ let timeLeft = 5;
 //render game over container
 const gameOver = function () {
   //create game over container elements
+  const retakeQuiz = document.createElement("button");
+  retakeQuiz.setAttribute("id", "retake-quiz-button");
+  retakeQuiz.textContent = "Retake quiz";
   const gameOverText = document.createElement("p");
   gameOverText.textContent =
     "If you want to try the quiz again, click the 'Retake quiz' button.";
@@ -26,6 +29,7 @@ const gameOver = function () {
   gameOverContainer.appendChild(gameOverHeadingOne);
   gameOverContainer.appendChild(gameOverHeadingTwo);
   gameOverContainer.appendChild(gameOverText);
+  gameOverContainer.appendChild(retakeQuiz);
   main.appendChild(gameOverContainer);
 };
 
