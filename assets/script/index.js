@@ -2,6 +2,11 @@ const startQuizBtn = document.querySelector("#start-button");
 const startQuizContainer = document.querySelector("#start-container");
 const main = document.querySelector("#main");
 
+//validate answer function here
+const validateAnswer = function () {
+  console.log("Answer clicked");
+};
+
 //here render question function
 const renderQuestion = function () {
   //create answer buttons and answers container
@@ -32,6 +37,9 @@ const renderQuestion = function () {
   questionContainer.appendChild(quizQuestion);
   questionContainer.appendChild(answersContainer);
   main.appendChild(questionContainer);
+
+  //add event listener on answers button
+  answerBtn.addEventListener("click", validateAnswer);
 };
 
 //here start quiz function
