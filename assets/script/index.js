@@ -11,9 +11,18 @@ const startTimer = function () {
   const timerSpan = document.querySelector("#timer");
   //decrement time value
   const timerThick = function () {
-    timeLeft -= 1;
-    //update date timer on header
-    timerSpan.textContent = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+
+      //remove quiz container
+      const questionContainer = document.querySelector("#question-container");
+      questionContainer.remove();
+      //render game over
+    } else {
+      timeLeft -= 1;
+      //update date timer on header
+      timerSpan.textContent = timeLeft;
+    }
   };
 
   const timer = setInterval(timerThick, 1000);
