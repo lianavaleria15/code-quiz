@@ -10,26 +10,27 @@ const questions = [
     correctAnswer: "answer2",
   },
   {
-    question: "Question1",
+    question: "Question2",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
     correctAnswer: "answer1",
   },
   {
-    question: "Question1",
+    question: "Question3",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
     correctAnswer: "answer4",
   },
   {
-    question: "Question1",
+    question: "Question4",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
     correctAnswer: "answer3",
   },
   {
-    question: "Question1",
+    question: "Question5",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
     correctAnswer: "answer2",
   },
 ];
+
 //initialise timer
 let timeLeft = 5;
 
@@ -80,11 +81,11 @@ const startTimer = function () {
       timeLeft -= 1;
       //update date timer on header
       timerSpan.textContent = timeLeft;
+      // renderQuestion();
     }
   };
 
   const timer = setInterval(timerThick, 1000);
-  console.log(timer);
 };
 
 //validate answer function here
@@ -94,7 +95,29 @@ const validateAnswer = function () {
 
 //here render question function
 const renderQuestion = function () {
-  //create answer buttons and answers container
+  //create quiz container
+  const questionContainer = document.createElement("div");
+  questionContainer.setAttribute("class", "question-container");
+  questionContainer.setAttribute("id", "question-container");
+
+  //create question container
+  const quizQuestion = document.createElement("h1");
+
+  //append quiz container
+  main.appendChild(questionContainer);
+
+  //create question container
+  for (i = 0; i < questions.length; i++) {
+    //create heading to display question
+
+    quizQuestion.textContent = questions[i].question;
+
+    //append question container
+    questionContainer.appendChild(quizQuestion);
+
+    //call verify answer container
+    // questionContainer.appendChild(answersContainer);
+  }
   const answerBtn = document.createElement("button");
   answerBtn.setAttribute("id", "answer-button");
 
@@ -108,20 +131,6 @@ const renderQuestion = function () {
   const answersContainer = document.createElement("div");
   answersContainer.setAttribute("class", "answers-container");
   answersContainer.appendChild(answerBtn);
-
-  //create heading to display question
-  const quizQuestion = document.createElement("h1");
-  quizQuestion.textContent = "This is the question";
-
-  //create question container
-  const questionContainer = document.createElement("div");
-  questionContainer.setAttribute("class", "question-container");
-  questionContainer.setAttribute("id", "question-container");
-
-  //append question container
-  questionContainer.appendChild(quizQuestion);
-  questionContainer.appendChild(answersContainer);
-  main.appendChild(questionContainer);
 
   //add event listener on answers button
   answerBtn.addEventListener("click", validateAnswer);
