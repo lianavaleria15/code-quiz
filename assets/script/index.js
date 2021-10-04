@@ -90,11 +90,11 @@ const startTimer = function () {
 
 //validate answer function here
 const validateAnswer = function () {
-  console.log("Answer clicked");
+  // console.log("Answer clicked");
 };
 
-//here render question function
-const renderQuestion = function () {
+//function to create quiz container
+const createQuizContainer = function (questions) {
   //create quiz container
   const questionContainer = document.createElement("div");
   questionContainer.setAttribute("class", "question-container");
@@ -102,20 +102,26 @@ const renderQuestion = function () {
 
   //create question container
   const quizQuestion = document.createElement("h1");
+  quizQuestion.textContent = questions.question;
 
-  //append quiz container
+  //append question container
+  questionContainer.appendChild(quizQuestion);
+
+  //append answers container to quiz container
+
+  //append quiz container to main
   main.appendChild(questionContainer);
+};
 
+//function to create answers container
+const createAnswersContainer = function () {};
+
+//here render question function
+const renderQuestion = function () {
   //create question container
   for (i = 0; i < questions.length; i++) {
-    //create heading to display question
-
-    quizQuestion.textContent = questions[i].question;
-
-    //append question container
-    questionContainer.appendChild(quizQuestion);
-
     //call verify answer container
+    validateAnswer();
     // questionContainer.appendChild(answersContainer);
   }
   const answerBtn = document.createElement("button");
