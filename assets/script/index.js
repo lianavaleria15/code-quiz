@@ -33,6 +33,7 @@ const quizQuestions = [
 
 //initialise timer
 let timeLeft = 5;
+let index = 0;
 
 //render game over container
 const gameOver = function () {
@@ -68,28 +69,22 @@ const validateAnswer = function () {
 };
 
 //function to create answers container
-const createAnswersContainer = function (answers) {
+const createAnswersContainer = function () {
   //create answers container
   const answersContainer = document.createElement("div");
   answersContainer.setAttribute("class", "answers-container");
 
-  const createButton = function (answer) {
-    //create answer button
-    const answerBtn = document.createElement("button");
-    answerBtn.setAttribute("id", "answer-button");
+  const answerBtn = document.createElement("button");
+  answerBtn.setAttribute("id", "answer-button");
 
-    //set text content button
-    answerBtn.textContent = answer;
+  //set text content button
 
-    //append answer button to answer container
-    answersContainer.appendChild(answerBtn);
-  };
-
-  answers.forEach(createButton);
+  //append answer button to answer container
+  answersContainer.appendChild(answerBtn);
 };
 
 //function to create quiz container
-const createQuizContainer = function (quizQuestion) {
+const createQuizContainer = function () {
   //create quiz container
   const questionContainer = document.createElement("div");
   questionContainer.setAttribute("class", "question-container");
@@ -98,12 +93,11 @@ const createQuizContainer = function (quizQuestion) {
   //create question container
 
   const createQuestion = document.createElement("h1");
-  createQuestion.textContent = quizQuestion.question;
+
   //append question container
   questionContainer.appendChild(createQuestion);
 
   //append answers container to quiz container
-  const renderAnswers = createAnswersContainer(quizQuestions[i]);
   questionContainer.appendChild(renderAnswers);
 };
 
@@ -121,7 +115,7 @@ const startTimer = function () {
 
       //remove quiz container
       const questionContainer = document.querySelector("#question-container");
-      questionContainer.remove();
+      // questionContainer.remove();
 
       //render game over
       gameOver();
@@ -142,12 +136,8 @@ const startQuiz = function () {
 
   //start timer function
   startTimer();
-
   //render quiz questions
   renderQuestion();
-
-  createQuizContainer();
-  createAnswersContainer();
 };
 
 //add event listener on start quiz button
