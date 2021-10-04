@@ -3,7 +3,7 @@ const startQuizContainer = document.querySelector("#start-container");
 const main = document.querySelector("#main");
 
 //store questions in an object array
-const questions = [
+const quizQuestions = [
   {
     question: "Question1",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
@@ -89,26 +89,22 @@ const createAnswersContainer = function (answers) {
 };
 
 //function to create quiz container
-const createQuizContainer = function () {
+const createQuizContainer = function (quizQuestion) {
   //create quiz container
   const questionContainer = document.createElement("div");
   questionContainer.setAttribute("class", "question-container");
   questionContainer.setAttribute("id", "question-container");
+
   //create question container
-  for (i = 0; i < questions.length; i++) {
-    const quizQuestion = document.createElement("h1");
-    quizQuestion.textContent = questions[i].question;
-    //append question container
-    questionContainer.appendChild(quizQuestion);
 
-    //append answers container to quiz container
-    //   questionContainer.appendChild(answersContainer);
-    // }
+  const createQuestion = document.createElement("h1");
+  createQuestion.textContent = quizQuestion.question;
+  //append question container
+  questionContainer.appendChild(createQuestion);
 
-    //append quiz container to main
-    createAnswersContainer();
-    return questionContainer;
-  }
+  //append answers container to quiz container
+  const renderAnswers = createAnswersContainer(quizQuestions[i]);
+  questionContainer.appendChild(renderAnswers);
 };
 
 //here render question function
