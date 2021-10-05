@@ -35,6 +35,8 @@ const quizQuestions = [
 let timeLeft = 5;
 let index = 0;
 
+const abc = quizQuestions[0].question;
+console.log(abc);
 //render game over container
 const gameOver = function () {
   //create game over container elements
@@ -68,41 +70,42 @@ const validateAnswer = function () {
   // console.log("Answer clicked");
 };
 
-//function to create answers container
-const createAnswersContainer = function () {
+// function to create answers container
+const renderAnswers = function (answers) {
   //create answers container
-  const answersContainer = document.createElement("div");
-  answersContainer.setAttribute("class", "answers-container");
+  const createAnswersContainer = function (answer, index) {
+    const answersContainer = document.createElement("div");
+    answersContainer.setAttribute("class", "answers-container");
 
-  const answerBtn = document.createElement("button");
-  answerBtn.setAttribute("id", "answer-button");
+    const answerBtn = document.createElement("button");
+    answerBtn.setAttribute("id", "answer-button");
 
-  //set text content button
+    //set text content button
+    answerBtn.textContent = index;
 
-  //append answer button to answer container
-  answersContainer.appendChild(answerBtn);
+    //append answer button to answer container
+    answersContainer.appendChild(answerBtn);
+  };
+
+  answers.forEach(createAnswersContainer);
 };
 
 //function to create quiz container
-const createQuizContainer = function () {
-  //create quiz container
-  const questionContainer = document.createElement("div");
-  questionContainer.setAttribute("class", "question-container");
-  questionContainer.setAttribute("id", "question-container");
+const renderQuestions = function (quizQuestions) {
+  const createQuizContainer = function (quizQuestion, index) {
+    //create quiz container
+    const questionContainer = document.createElement("div");
+    questionContainer.setAttribute("class", "question-container");
+    questionContainer.setAttribute("id", "question-container");
 
-  //create question container
-
-  const createQuestion = document.createElement("h1");
-
-  //append question container
-  questionContainer.appendChild(createQuestion);
-
-  //append answers container to quiz container
-  questionContainer.appendChild(renderAnswers);
+    //create question container
+    const createQuestion = document.createElement("h1");
+    createQuestion.setAttribute("id", "quiz-question");
+    createQuestion.textContent = quizQuestion;
+    questionContainer.appendChild(createQuestion);
+  };
+  quizQuestions.forEach(createQuizContainer);
 };
-
-//here render question function
-const renderQuestion = function () {};
 
 //start timer function
 const startTimer = function () {
@@ -137,7 +140,9 @@ const startQuiz = function () {
   //start timer function
   startTimer();
   //render quiz questions
-  renderQuestion();
+  //   renderQuestion();
+  renderAnswers();
+  renderQuestions();
 };
 
 //add event listener on start quiz button
