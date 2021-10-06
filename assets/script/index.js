@@ -35,8 +35,6 @@ const quizQuestions = [
 let timeLeft = 5;
 let index = 0;
 
-const abc = quizQuestions[0].question;
-console.log(abc);
 //render game over container
 const gameOver = function () {
   //create game over container elements
@@ -66,9 +64,7 @@ const gameOver = function () {
 };
 
 //validate answer function here
-const validateAnswer = function () {
-  // console.log("Answer clicked");
-};
+const validateAnswer = function () {};
 
 // function to create answers container
 const renderAnswers = function (answers) {
@@ -79,6 +75,7 @@ const renderAnswers = function (answers) {
 
     const answerBtn = document.createElement("button");
     answerBtn.setAttribute("id", "answer-button");
+    answerBtn.setAttribute("data-attribute", "data-answer  ");
 
     //set text content button
     answerBtn.textContent = index;
@@ -97,6 +94,7 @@ const renderQuestions = function (quizQuestions) {
     const questionContainer = document.createElement("div");
     questionContainer.setAttribute("class", "question-container");
     questionContainer.setAttribute("id", "question-container");
+    questionContainer.setAttribute("data-attribute", "correct-answer");
 
     //create question container
     const createQuestion = document.createElement("h1");
@@ -105,6 +103,16 @@ const renderQuestions = function (quizQuestions) {
     questionContainer.appendChild(createQuestion);
   };
   quizQuestions.forEach(createQuizContainer);
+};
+
+const renderQuiz = function (quizQuestions) {
+  if (index < quizQuestions.length) {
+    //render questions
+    renderQuestions();
+  } else {
+    //render submit score container
+    alert("GAME OVER!");
+  }
 };
 
 //start timer function
@@ -141,8 +149,7 @@ const startQuiz = function () {
   startTimer();
   //render quiz questions
   //   renderQuestion();
-  renderAnswers();
-  renderQuestions();
+  renderQuiz();
 };
 
 //add event listener on start quiz button
