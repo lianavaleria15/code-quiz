@@ -88,7 +88,7 @@ const renderAnswers = function (answers) {
 };
 
 //function to create quiz container
-const renderQuestions = function (quizQuestions) {
+const renderQuestions = function () {
   const createQuizContainer = function (quizQuestion, index) {
     //create quiz container
     const questionContainer = document.createElement("div");
@@ -106,14 +106,8 @@ const renderQuestions = function (quizQuestions) {
   quizQuestions.forEach(createQuizContainer);
 };
 
-const renderQuiz = function (quizQuestions) {
-  if (index < quizQuestions.length) {
-    //render questions
-    renderQuestions(quizQuestions);
-  } else {
-    //render submit score container
-    alert("GAME OVER!");
-  }
+const renderQuiz = function () {
+  renderQuestions();
 };
 
 //start timer function
