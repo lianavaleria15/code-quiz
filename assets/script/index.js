@@ -69,10 +69,10 @@ const validateAnswer = function () {};
 // function to create answers container
 const renderAnswers = function (answers) {
   //create answers container
-  const createAnswersContainer = function (answer, index) {
-    const answersContainer = document.createElement("div");
-    answersContainer.setAttribute("class", "answers-container");
+  const answersContainer = document.createElement("div");
+  answersContainer.setAttribute("class", "answers-container");
 
+  const createAnswersContainer = function (answer, index) {
     const answerBtn = document.createElement("button");
     answerBtn.setAttribute("id", "answer-button");
     answerBtn.setAttribute("data-attribute", "data-answer  ");
@@ -85,29 +85,33 @@ const renderAnswers = function (answers) {
   };
 
   answers.forEach(createAnswersContainer);
+  return answersContainer;
 };
 
 //function to create quiz container
-const renderQuestions = function () {
-  const createQuizContainer = function (quizQuestion, index) {
-    //create quiz container
-    const questionContainer = document.createElement("div");
-    questionContainer.setAttribute("class", "question-container");
-    questionContainer.setAttribute("id", "question-container");
-    questionContainer.setAttribute("data-attribute", "correct-answer");
+const renderQuestion = function (quizQuestion) {
+  // const createQuizContainer = function (quizQuestion, index) {
+  //create quiz container
+  const questionContainer = document.createElement("div");
+  questionContainer.setAttribute("class", "question-container");
+  questionContainer.setAttribute("id", "question-container");
+  questionContainer.setAttribute("data-attribute", "correct-answer");
 
-    //create question container
-    const createQuestion = document.createElement("h1");
-    createQuestion.setAttribute("id", "quiz-question");
-    createQuestion.textContent = quizQuestion;
-    questionContainer.appendChild(createQuestion);
-    main.appendChild(questionContainer);
-  };
-  quizQuestions.forEach(createQuizContainer);
+  //create question container
+  const createQuestion = document.createElement("h1");
+  createQuestion.setAttribute("id", "quiz-question");
+  createQuestion.textContent = quizQuestion.question;
+  questionContainer.appendChild(createQuestion);
+  //append asnwers
+  let answersEle = renderAnswers(quizQuestion.answers);
+  questionContainer.appendChild(answersEle);
+  main.replaceChildren(questionContainer);
+  // };
+  //   quizQuestions.forEach(createQuizContainer);
 };
 
 const renderQuiz = function () {
-  renderQuestions();
+  renderQuestion(quizQuestions[index]);
 };
 
 //start timer function
