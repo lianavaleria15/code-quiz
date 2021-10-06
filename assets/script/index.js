@@ -101,6 +101,7 @@ const renderQuestions = function (quizQuestions) {
     createQuestion.setAttribute("id", "quiz-question");
     createQuestion.textContent = quizQuestion;
     questionContainer.appendChild(createQuestion);
+    main.appendChild(questionContainer);
   };
   quizQuestions.forEach(createQuizContainer);
 };
@@ -108,7 +109,7 @@ const renderQuestions = function (quizQuestions) {
 const renderQuiz = function (quizQuestions) {
   if (index < quizQuestions.length) {
     //render questions
-    renderQuestions();
+    renderQuestions(quizQuestions);
   } else {
     //render submit score container
     alert("GAME OVER!");
