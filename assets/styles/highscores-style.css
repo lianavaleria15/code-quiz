@@ -1,0 +1,44 @@
+:root {
+  --imperial-red: #e63946ff;
+  --honeydew: #f1faeeff;
+  --powder-blue: #a8dadcff;
+  --celadon-blue: #457b9dff;
+  --prussian-blue: #1d3557ff;
+}
+.body {
+  background-color: var(--imperial-red);
+  font-size: 16px;
+  line-height: 2.5rem;
+}
+
+.header {
+  background-color: var(--honeydew);
+  padding: 3rem;
+}
+.header h1 {
+  color: var(--prussian-blue);
+  text-align: center;
+  font-size: 3rem;
+}
+
+.high-scores-container {
+  /* background-color: var(--honeydew); */
+  margin: 1rem;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.score-item {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--powder-blue);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 3rem;
+}
