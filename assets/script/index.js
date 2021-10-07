@@ -137,7 +137,52 @@ const renderQuiz = function (quizQuestions) {
     main.appendChild(currentQuestion);
   } else {
     //append submit score container
+    SubmitScoreContainer();
   }
+};
+
+const submitScores = function () {
+  //get score from input
+  const scoreInput = document.getElementById("score-input").value;
+  console.log(scoreInput);
+};
+//create submit score container
+const SubmitScoreContainer = function () {
+  //create submit scores container
+  const scoreContainer = document.createElement("div");
+  scoreContainer.setAttribute("id", "score-container");
+  scoreContainer.setAttribute("class", "score-container");
+
+  //create heading and paragraph elements
+  const h1 = document.createElement("h1");
+  h1.textContent = "Congratulations!";
+
+  const h2 = document.createElement("h2");
+  h2.textContent = "You reached the end of the quiz";
+
+  const p = document.createElement("p");
+  p.textContent =
+    "To save your score and compare with opponents, please enter your 2 name initials followed by the score showed on the timer and press 'submit score' button.";
+
+  // create submit score div
+  const submitButton = document.createElement("button");
+  submitButton.setAttribute("id", "submit-score-button");
+  submitButton.textContent = "Submit score";
+  submitButton.addEventListener("click", submitScores);
+
+  const scoreInput = document.createElement("input");
+  scoreInput.setAttribute("type", "text");
+  scoreInput.setAttribute("placeholder", "Enter initials and score here");
+  scoreInput.setAttribute("id", "score-input");
+
+  const submitScore = document.createElement("div");
+  submitScore.setAttribute("id", "submit-score-container");
+  submitScore.append(scoreInput, submitButton);
+
+  //append headings paragraph and input elements to score container
+  scoreContainer.append(h1, h2, p, submitScore);
+
+  main.appendChild(scoreContainer);
 };
 
 //start timer function
@@ -175,6 +220,7 @@ const startQuiz = function () {
   //render first question
   const firstQuestion = renderQuestion(quizQuestions[0]);
   main.appendChild(firstQuestion);
+  SubmitScoreContainer();
 };
 
 //add event listener on start quiz button
