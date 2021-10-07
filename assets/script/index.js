@@ -32,7 +32,7 @@ const quizQuestions = [
 ];
 
 //initialise timer
-let timeLeft = 5;
+let timeLeft = 10;
 let index = 0;
 
 //render game over container
@@ -55,11 +55,14 @@ const gameOver = function () {
   gameOverContainer.setAttribute("id", "game-over-container");
   gameOverContainer.setAttribute("class", "game-over-container");
 
-  //append game over container elements
-  gameOverContainer.appendChild(gameOverHeadingOne);
-  gameOverContainer.appendChild(gameOverHeadingTwo);
-  gameOverContainer.appendChild(gameOverText);
-  gameOverContainer.appendChild(retakeQuiz);
+  //append elements to game over container
+  gameOverContainer.append(
+    gameOverHeadingOne,
+    gameOverHeadingTwo,
+    gameOverText,
+    retakeQuiz
+  );
+  main.removeChild(document.getElementById("question-container"));
   main.appendChild(gameOverContainer);
 };
 
@@ -74,14 +77,14 @@ const verifyAnswer = function (event) {
     const answerClicked = target.getAttribute("data-attribute");
     //get correct value
     const correctAnswer = currentTarget.getAttribute("data-attribute");
-    console.log(correctAnswer);
 
     //verify if answer clicked matches correct answer
     if (answerClicked === correctAnswer) {
       main.removeChild(document.getElementById("question-container"));
+      index += 1;
       renderQuiz();
     } else {
-      console.log("Mistake");
+      timeLeft -= 5;
     }
   }
 };
@@ -130,7 +133,7 @@ const renderQuestion = function (quizQuestion) {
   return questionContainer;
 };
 
-const renderQuiz = function (quizQuestions) {
+const renderQuiz = function () {
   //render questions
   if (index < quizQuestions.length) {
     const currentQuestion = renderQuestion(quizQuestions[index]);
@@ -144,7 +147,20 @@ const renderQuiz = function (quizQuestions) {
 const submitScores = function () {
   //get score from input
   const scoreInput = document.getElementById("score-input").value;
-  console.log(scoreInput);
+
+  //get scores from local storage
+  const highScoresLocalStorage = JSON.parse(
+    localStorage.getItem("high scores")
+  );
+
+  if (!highScoresLocalStorage) {
+    //set scores in local storage
+    localStorage.setItem("high scores", JSON.stringify(scoreInput));
+    console.log(highScoresLocalStorage);
+  } else {
+    highScoresLocalStorage.push(scoreInput);
+    localStorage.setItem("high scores", JSON.stringify(highScoresLocalStorage));
+  }
 };
 //create submit score container
 const SubmitScoreContainer = function () {
@@ -189,22 +205,17 @@ const SubmitScoreContainer = function () {
 const startTimer = function () {
   //target timer span on html file
   const timerSpan = document.querySelector("#timer");
+  timerSpan.textContent = timeLeft;
   //decrement time value
   const timerThick = function () {
     if (timeLeft <= 0) {
       clearInterval(timer);
 
-      //remove quiz container
-      const questionContainer = document.querySelector("#question-container");
-      // questionContainer.remove();
-
       //render game over
       gameOver();
     } else {
       timeLeft -= 1;
-      //update date timer on header
       timerSpan.textContent = timeLeft;
-      // renderQuestion();
     }
   };
 
@@ -220,7 +231,6 @@ const startQuiz = function () {
   //render first question
   const firstQuestion = renderQuestion(quizQuestions[0]);
   main.appendChild(firstQuestion);
-  SubmitScoreContainer();
 };
 
 //add event listener on start quiz button
