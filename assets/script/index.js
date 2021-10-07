@@ -70,7 +70,13 @@ const verifyAnswer = function (event) {
   const currentTarget = event.currentTarget;
 
   if (target.matches("button")) {
-    console.log("Button clicked");
+    //get answer clicked value
+    const answerClicked = target.getAttribute("data-attribute");
+    console.log(answerClicked);
+    //get correct value
+    const correctAnswer = target.getAttribute("data-attribute");
+    console.log(correctAnswer);
+    //verify if answer clicked matches correct answer
   } else {
     console.log("Mistake");
   }
@@ -85,7 +91,7 @@ const renderAnswers = function (answers) {
   const createAnswersContainer = function (answer, index) {
     const answerBtn = document.createElement("button");
     answerBtn.setAttribute("id", "answer-button");
-    answerBtn.setAttribute("data-attribute", "data-answer  ");
+    answerBtn.setAttribute("data-attribute", answer);
     //set text content button
     answerBtn.textContent = index;
     //append answer button to answer container
@@ -103,7 +109,7 @@ const renderQuestion = function (quizQuestion) {
   const questionContainer = document.createElement("div");
   questionContainer.setAttribute("class", "question-container");
   questionContainer.setAttribute("id", "question-container");
-  questionContainer.setAttribute("data-attribute", "correct-answer");
+  questionContainer.setAttribute("data-attribute", quizQuestion.correctAnswer);
 
   //create question container
   const createQuestion = document.createElement("h1");
