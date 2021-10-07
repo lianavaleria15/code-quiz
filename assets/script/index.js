@@ -64,7 +64,17 @@ const gameOver = function () {
 };
 
 //validate answer function here
-const verifyAnswer = function () {};
+const verifyAnswer = function (event) {
+  //use event bubbling to check the answer clicked by user
+  const target = event.target;
+  const currentTarget = event.currentTarget;
+
+  if (target.matches("button")) {
+    console.log("Button clicked");
+  } else {
+    console.log("Mistake");
+  }
+};
 
 // function to create answers container
 const renderAnswers = function (answers) {
