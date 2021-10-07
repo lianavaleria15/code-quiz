@@ -7,27 +7,27 @@ const quizQuestions = [
   {
     question: "Question1",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer2",
+    correctAnswer: "answer 2",
   },
   {
     question: "Question2",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer1",
+    correctAnswer: "answer 1",
   },
   {
     question: "Question3",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer4",
+    correctAnswer: "answer 4",
   },
   {
     question: "Question4",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer3",
+    correctAnswer: "answer 3",
   },
   {
     question: "Question5",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer2",
+    correctAnswer: "answer 2",
   },
 ];
 
@@ -72,13 +72,17 @@ const verifyAnswer = function (event) {
   if (target.matches("button")) {
     //get answer clicked value
     const answerClicked = target.getAttribute("data-attribute");
-    console.log(answerClicked);
     //get correct value
-    const correctAnswer = target.getAttribute("data-attribute");
+    const correctAnswer = currentTarget.getAttribute("data-attribute");
     console.log(correctAnswer);
+
     //verify if answer clicked matches correct answer
-  } else {
-    console.log("Mistake");
+    if (answerClicked === correctAnswer) {
+      main.removeChild(document.getElementById("question-container"));
+      renderQuiz();
+    } else {
+      console.log("Mistake");
+    }
   }
 };
 
@@ -104,7 +108,6 @@ const renderAnswers = function (answers) {
 
 //function to create quiz container
 const renderQuestion = function (quizQuestion) {
-  // const createQuizContainer = function (quizQuestion, index) {
   //create quiz container
   const questionContainer = document.createElement("div");
   questionContainer.setAttribute("class", "question-container");
@@ -117,20 +120,23 @@ const renderQuestion = function (quizQuestion) {
   createQuestion.textContent = quizQuestion.question;
   questionContainer.appendChild(createQuestion);
 
-  //append asnwers
+  //append answers
   let answerChoices = renderAnswers(quizQuestion.answers);
   questionContainer.appendChild(answerChoices);
+
   //add event listener question container
   questionContainer.addEventListener("click", verifyAnswer);
-  // main.replaceChildren(questionContainer);
+
   return questionContainer;
 };
 
-const renderQuiz = function () {
+const renderQuiz = function (quizQuestions) {
   //render questions
   if (index < quizQuestions.length) {
     const currentQuestion = renderQuestion(quizQuestions[index]);
     main.appendChild(currentQuestion);
+  } else {
+    //append submit score container
   }
 };
 
@@ -166,9 +172,9 @@ const startQuiz = function () {
 
   //start timer function
   startTimer();
-  //render quiz questions
-  //   renderQuestion();
-  renderQuiz();
+  //render first question
+  const firstQuestion = renderQuestion(quizQuestions[0]);
+  main.appendChild(firstQuestion);
 };
 
 //add event listener on start quiz button
