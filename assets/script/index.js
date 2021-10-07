@@ -64,7 +64,7 @@ const gameOver = function () {
 };
 
 //validate answer function here
-const validateAnswer = function () {};
+const verifyAnswer = function () {};
 
 // function to create answers container
 const renderAnswers = function (answers) {
@@ -76,10 +76,8 @@ const renderAnswers = function (answers) {
     const answerBtn = document.createElement("button");
     answerBtn.setAttribute("id", "answer-button");
     answerBtn.setAttribute("data-attribute", "data-answer  ");
-
     //set text content button
     answerBtn.textContent = index;
-
     //append answer button to answer container
     answersContainer.appendChild(answerBtn);
   };
@@ -102,16 +100,22 @@ const renderQuestion = function (quizQuestion) {
   createQuestion.setAttribute("id", "quiz-question");
   createQuestion.textContent = quizQuestion.question;
   questionContainer.appendChild(createQuestion);
+
   //append asnwers
-  let answersEle = renderAnswers(quizQuestion.answers);
-  questionContainer.appendChild(answersEle);
-  main.replaceChildren(questionContainer);
-  // };
-  //   quizQuestions.forEach(createQuizContainer);
+  let answerChoices = renderAnswers(quizQuestion.answers);
+  questionContainer.appendChild(answerChoices);
+  //add event listener question container
+  questionContainer.addEventListener("click", verifyAnswer);
+  // main.replaceChildren(questionContainer);
+  return questionContainer;
 };
 
 const renderQuiz = function () {
-  renderQuestion(quizQuestions[index]);
+  //render questions
+  if (index < quizQuestions.length) {
+    const currentQuestion = renderQuestion(quizQuestions[index]);
+    main.appendChild(currentQuestion);
+  }
 };
 
 //start timer function
