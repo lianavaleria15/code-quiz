@@ -32,7 +32,7 @@ const quizQuestions = [
 ];
 
 //initialise timer
-let timeLeft = 10;
+let timeLeft = 30;
 let index = 0;
 
 //render game over container
@@ -41,6 +41,7 @@ const gameOver = function () {
   const retakeQuiz = document.createElement("button");
   retakeQuiz.setAttribute("id", "retake-quiz-button");
   retakeQuiz.textContent = "Retake quiz";
+
   const gameOverText = document.createElement("p");
   gameOverText.textContent =
     "If you want to try the quiz again, click the 'Retake quiz' button.";
@@ -62,8 +63,11 @@ const gameOver = function () {
     gameOverText,
     retakeQuiz
   );
-  main.removeChild(document.getElementById("question-container"));
+  //remove quiz container and append game over container
+
   main.appendChild(gameOverContainer);
+
+  //add event listener to retake quiz button to retake quiz
 };
 
 //validate answer function here
@@ -158,7 +162,8 @@ const submitScores = function () {
     localStorage.setItem("high scores", JSON.stringify(scoreInput));
     console.log(highScoresLocalStorage);
   } else {
-    highScoresLocalStorage.push(scoreInput);
+    // highScoresLocalStorage.push(scoreInput);
+    console.log(highScoresLocalStorage);
     localStorage.setItem("high scores", JSON.stringify(highScoresLocalStorage));
   }
 };
@@ -199,6 +204,8 @@ const SubmitScoreContainer = function () {
   scoreContainer.append(h1, h2, p, submitScore);
 
   main.appendChild(scoreContainer);
+  //add event listener on submit button
+  submitButton.addEventListener("click", submitScores);
 };
 
 //start timer function
@@ -210,7 +217,7 @@ const startTimer = function () {
   const timerThick = function () {
     if (timeLeft <= 0) {
       clearInterval(timer);
-
+      main.removeChild(document.getElementById("question-container"));
       //render game over
       gameOver();
     } else {
@@ -228,7 +235,8 @@ const startQuiz = function () {
 
   //start timer function
   startTimer();
-  //render first question
+
+  //render first quiz question
   const firstQuestion = renderQuestion(quizQuestions[0]);
   main.appendChild(firstQuestion);
 };
