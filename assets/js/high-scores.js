@@ -5,7 +5,7 @@ const goBackBtn = document.getElementById("go-back-btn");
 const clearScoresBtn = document.getElementById("clear-scores-btn");
 
 //target main
-const main = document.getElementById("main");
+const parentContainer = document.getElementById("parent-container");
 
 //function to go back to start quiz game
 const goBackToGame = function () {
@@ -22,16 +22,19 @@ const createHighScoresContainer = function () {
   //create container div
   const containerDiv = document.createElement("div");
   containerDiv.setAttribute("id", "high-scores-container");
+  containerDiv.setAttribute("class", "high-scores-container");
   console.log(containerDiv);
+
   //create list elements
   const highScoreElement = document.createElement("li");
   highScoreElement.setAttribute = ("id", "score-item");
+  highScoreElement.textContent = "test";
   console.log(highScoreElement);
+
   //append high scores container to main
   containerDiv.append(highScoreElement);
-  main.append(containerDiv);
+  parentContainer.append(containerDiv);
 };
-createHighScoresContainer();
 
 //add event on go back btn
 goBackBtn.addEventListener("click", goBackToGame);
