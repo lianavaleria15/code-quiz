@@ -17,24 +17,34 @@ const clearHighScores = function () {
   localStorage.clear();
 };
 
-//function to create high scores container
-const createHighScoresContainer = function () {
+const createHighScoresContainer = function (highScore) {
   //create container div
   const containerDiv = document.createElement("div");
   containerDiv.setAttribute("id", "high-scores-container");
   containerDiv.setAttribute("class", "high-scores-container");
-  console.log(containerDiv);
 
   //create list elements
   const highScoreElement = document.createElement("li");
   highScoreElement.setAttribute = ("id", "score-item");
-  highScoreElement.textContent = "test";
-  console.log(highScoreElement);
+  highScoreElement.textContent = highScore;
 
   //append high scores container to main
   containerDiv.append(highScoreElement);
   parentContainer.append(containerDiv);
+  return containerDiv;
 };
+
+// function to access scores in local storage
+const getScoresFromLocalStorage = function () {
+  const highScores = localStorage.getItem("high scores");
+  if (highScores) {
+    createHighScoresContainer();
+  } else {
+  }
+};
+
+getScoresFromLocalStorage();
+//function to create high scores container
 
 //add event on go back btn
 goBackBtn.addEventListener("click", goBackToGame);
