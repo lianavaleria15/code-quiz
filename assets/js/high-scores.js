@@ -15,35 +15,43 @@ const goBackToGame = function () {
 //function to clear high scores
 const clearHighScores = function () {
   localStorage.clear();
+  //
+  location.refresh();
 };
 
-const createHighScoresContainer = function (highScore) {
+const createHighScoresContainer = function (highScores) {
   //create container div
   const containerDiv = document.createElement("div");
   containerDiv.setAttribute("id", "high-scores-container");
   containerDiv.setAttribute("class", "high-scores-container");
 
-  //create list elements
-  const highScoreElement = document.createElement("li");
-  highScoreElement.setAttribute = ("id", "score-item");
-  highScoreElement.textContent = highScore;
+  //create a for function to display high scores
+  for (highScore of highScores) {
+    //create list elements
+    const highScoreElement = document.createElement("li");
+    highScoreElement.setAttribute = ("id", "score-item");
+    highScoreElement.textContent = `Name:${highScore.nameInput} Score: ${highScore.timeInput}`;
 
-  //append high scores container to main
-  containerDiv.append(highScoreElement);
+    //append high scores container to main
+    containerDiv.append(highScoreElement);
+  }
+
   parentContainer.append(containerDiv);
-  return containerDiv;
+  // return containerDiv;
 };
 
 // function to access scores in local storage
 const getScoresFromLocalStorage = function () {
-  const highScores = JSON.parse(localStorage.getItem("high score"));
+  const highScores = JSON.parse(localStorage.getItem("high_score"));
   console.log(highScores);
   if (highScores) {
-    createHighScoresContainer();
+    createHighScoresContainer(highScores);
   } else {
   }
 };
-
+window.onload = function () {
+  getScoresFromLocalStorage();
+};
 //add event on go back btn
 goBackBtn.addEventListener("click", goBackToGame);
 

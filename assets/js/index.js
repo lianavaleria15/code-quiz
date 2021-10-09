@@ -168,6 +168,8 @@ const renderQuiz = function () {
     SubmitScoreContainer();
     // set quiz score value to the time left on timer
     quizScore = timeLeft;
+    //set time to zero
+    timeLeft = 0;
   }
 };
 
@@ -180,8 +182,12 @@ const submitScores = function (event) {
     nameInput,
     timeInput,
   };
+  //declare a new array and push high scoreUser used null coalescing
+  const highScores = JSON.parse(localStorage.getItem("high_score")) ?? [];
+  highScores.push(highScoreUser);
+  console.log(highScores);
   // add high score to local storage
-  localStorage.setItem("high scores", JSON.stringify(highScoreUser));
+  localStorage.setItem("high_score", JSON.stringify(highScores));
 };
 
 //create submit score container
