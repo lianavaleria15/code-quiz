@@ -221,6 +221,7 @@ const SubmitScoreContainer = function () {
 
   const submitScore = document.createElement("div");
   submitScore.setAttribute("id", "submit-score-container");
+  submitScore.setAttribute("class", "submit-score-container");
   submitScore.append(scoreInput, submitButton);
 
   //append headings paragraph and input elements to score container

@@ -35,7 +35,6 @@
 .score-container {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   align-items: center;
   background-color: var(--honeydew);
   margin: 10rem 8rem;
@@ -123,19 +122,10 @@
   .start-container,
   .question-container,
   .answers-container,
-  .game-over-container {
+  .game-over-container,
+  .score-container {
     width: 100%;
     margin: 0;
-  }
-  .start-container h1,
-  .question-container h3,
-  .game-over-container h1 {
-    font-size: 1rem;
-  }
-  .start-btn-container button,
-  .game-over-container button {
-  }
-  .answers-container button {
   }
 }
 
@@ -150,11 +140,7 @@
     height: fit-content;
     width: 100%;
   }
-  .start-container h1,
-  .question-container h3,
-  .game-over-container h1 {
-    font-size: 1rem;
-  }
+
   .answers-container {
     width: 100%;
   }
