@@ -5,29 +5,50 @@ const main = document.querySelector("#main");
 //store questions in an object array
 const quizQuestions = [
   {
-    question: "Question1",
-    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer 2",
+    question: "How can you add a comment in JavaScript?",
+    answers: [
+      "<!--This is a comment-->",
+      "/*This is a comment*/",
+      "//This is a comment",
+      "!This is a comment",
+    ],
+    correctAnswer: "//This is a comment",
   },
   {
-    question: "Question2",
-    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer 1",
+    question: "What is the correct way to declare an array?",
+    answers: [
+      "const cities = ['London','Dubai','Rome']",
+      "const cities = {'London', 'Dubai', 'Rome'}",
+      "const cities = 'London', 'Dubai', 'Rome'",
+      "const cities = (London, Dubai, Rome)",
+    ],
+    correctAnswer: "const cities = ['London','Dubai','Rome']",
   },
   {
-    question: "Question3",
-    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer 4",
+    question:
+      "What is the correct JavaScript syntax to add text to a HTML element? ",
+    answers: [
+      "element.addText",
+      "element.text",
+      "element.textAdd",
+      "element.textContent",
+    ],
+    correctAnswer: "element.textContent",
   },
   {
-    question: "Question4",
-    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer 3",
+    question: "How do you link an external JavaScript file to HTML?",
+    answers: [
+      "<script.js></script.js>",
+      "<javascript></javascript>",
+      "<script></script>",
+      "<javascript.js></javascript.js>",
+    ],
+    correctAnswer: "<script></script>",
   },
   {
-    question: "Question5",
-    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    correctAnswer: "answer 2",
+    question: "How do you write an IF statement in JavaScript?",
+    answers: ["if i = 2", "if (i == 2)", "if (i = 2) then", "if i = 2 then"],
+    correctAnswer: "if (i == 2)",
   },
 ];
 
@@ -104,7 +125,7 @@ const renderAnswers = function (answers) {
     answerBtn.setAttribute("id", "answer-button");
     answerBtn.setAttribute("data-attribute", answer);
     //set text content button
-    answerBtn.textContent = index;
+    answerBtn.textContent = answer;
     //append answer button to answer container
     answersContainer.appendChild(answerBtn);
   };
@@ -145,28 +166,24 @@ const renderQuiz = function () {
   } else {
     //append submit score container
     SubmitScoreContainer();
+    // set quiz score value to the time left on timer
+    quizScore = timeLeft;
   }
 };
 
-const submitScores = function () {
-  //get score from input
-  const scoreInput = document.getElementById("score-input").value;
-
-  //get scores from local storage
-  const highScoresLocalStorage = JSON.parse(
-    localStorage.getItem("high scores")
-  );
-
-  if (!highScoresLocalStorage) {
-    //set scores in local storage
-    localStorage.setItem("high scores", JSON.stringify(scoreInput));
-    console.log(highScoresLocalStorage);
-  } else {
-    // highScoresLocalStorage.push(scoreInput);
-    console.log(highScoresLocalStorage);
-    localStorage.setItem("high scores", JSON.stringify(highScoresLocalStorage));
-  }
+const submitScores = function (event) {
+  event.preventDefault();
+  //get final score from suer input and timer
+  const nameInput = document.getElementById("score-input").value;
+  const timeInput = quizScore;
+  const highScoreUser = {
+    nameInput,
+    timeInput,
+  };
+  // add high score to local storage
+  localStorage.setItem("high scores", JSON.stringify(highScoreUser));
 };
+
 //create submit score container
 const SubmitScoreContainer = function () {
   //create submit scores container

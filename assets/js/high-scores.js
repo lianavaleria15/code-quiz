@@ -36,15 +36,13 @@ const createHighScoresContainer = function (highScore) {
 
 // function to access scores in local storage
 const getScoresFromLocalStorage = function () {
-  const highScores = localStorage.getItem("high scores");
+  const highScores = JSON.parse(localStorage.getItem("high score"));
+  console.log(highScores);
   if (highScores) {
     createHighScoresContainer();
   } else {
   }
 };
-
-getScoresFromLocalStorage();
-//function to create high scores container
 
 //add event on go back btn
 goBackBtn.addEventListener("click", goBackToGame);

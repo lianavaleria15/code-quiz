@@ -21,8 +21,8 @@
   font-size: 3rem;
 }
 
-.high-scores-container {
-  /* background-color: var(--honeydew); */
+.parent-container {
+  background-color: var(--honeydew);
   margin: 1rem;
   padding: 4rem;
   display: flex;
