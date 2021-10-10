@@ -53,10 +53,15 @@ const quizQuestions = [
 ];
 
 //initialise timer
-let timeLeft = 30;
+let timeLeft = 60;
 let index = 0;
 
-//render game over container
+//function to retake quiz when game over container is displayed
+const goBackToQuiz = function () {
+  location.href = "index.html";
+};
+
+//function to construct game over container
 const gameOver = function () {
   //create game over container elements
   const retakeQuiz = document.createElement("button");
@@ -84,11 +89,12 @@ const gameOver = function () {
     gameOverText,
     retakeQuiz
   );
-  //remove quiz container and append game over container
 
+  // append game over container to main
   main.appendChild(gameOverContainer);
 
   //add event listener to retake quiz button to retake quiz
+  retakeQuiz.addEventListener("click", goBackToQuiz);
 };
 
 //validate answer function here
@@ -115,7 +121,7 @@ const verifyAnswer = function (event) {
 };
 
 // function to create answers container
-const renderAnswers = function (answers) {
+const buildAnswers = function (answers) {
   //create answers container
   const answersContainer = document.createElement("div");
   answersContainer.setAttribute("class", "answers-container");
@@ -149,7 +155,7 @@ const renderQuestion = function (quizQuestion) {
   questionContainer.appendChild(createQuestion);
 
   //append answers
-  let answerChoices = renderAnswers(quizQuestion.answers);
+  let answerChoices = buildAnswers(quizQuestion.answers);
   questionContainer.appendChild(answerChoices);
 
   //add event listener question container
@@ -158,39 +164,48 @@ const renderQuestion = function (quizQuestion) {
   return questionContainer;
 };
 
+//function to render quiz
 const renderQuiz = function () {
   //render questions
   if (index < quizQuestions.length) {
+    //render current question container
     const currentQuestion = renderQuestion(quizQuestions[index]);
+
     main.appendChild(currentQuestion);
   } else {
     //append submit score container
     SubmitScoreContainer();
+
     // set quiz score value to the time left on timer
     quizScore = timeLeft;
+
     //set time to zero
     timeLeft = 0;
   }
 };
 
+//function to set set scores to local storage
 const submitScores = function (event) {
   event.preventDefault();
-  //get final score from suer input and timer
+
+  //get final score from user input and timer
   const nameInput = document.getElementById("score-input").value;
   const timeInput = quizScore;
   const highScoreUser = {
     nameInput,
     timeInput,
   };
+
   //declare a new array and push high scoreUser used null coalescing
   const highScores = JSON.parse(localStorage.getItem("high_score")) ?? [];
+
   highScores.push(highScoreUser);
-  console.log(highScores);
+
   // add high score to local storage
   localStorage.setItem("high_score", JSON.stringify(highScores));
 };
 
-//create submit score container
+//construct submit score container
 const SubmitScoreContainer = function () {
   //create submit scores container
   const scoreContainer = document.createElement("div");
@@ -206,9 +221,9 @@ const SubmitScoreContainer = function () {
 
   const p = document.createElement("p");
   p.textContent =
-    "To save your score and compare with opponents, please enter your 2 name initials followed by the score showed on the timer and press 'submit score' button.";
+    "To save your score and compare with opponents, please enter your 2 name initials and press 'submit score' button.";
 
-  // create submit score div
+  // create submit score button and input
   const submitButton = document.createElement("button");
   submitButton.setAttribute("id", "submit-score-button");
   submitButton.textContent = "Submit score";
@@ -219,6 +234,7 @@ const SubmitScoreContainer = function () {
   scoreInput.setAttribute("placeholder", "Enter initials and score here");
   scoreInput.setAttribute("id", "score-input");
 
+  //append score input and submit score button to submit score container
   const submitScore = document.createElement("div");
   submitScore.setAttribute("id", "submit-score-container");
   submitScore.setAttribute("class", "submit-score-container");
@@ -228,6 +244,7 @@ const SubmitScoreContainer = function () {
   scoreContainer.append(h1, h2, p, submitScore);
 
   main.appendChild(scoreContainer);
+
   //add event listener on submit button
   submitButton.addEventListener("click", submitScores);
 };
@@ -236,15 +253,21 @@ const SubmitScoreContainer = function () {
 const startTimer = function () {
   //target timer span on html file
   const timerSpan = document.querySelector("#timer");
+
+  //set text on timer span to timer value
   timerSpan.textContent = timeLeft;
-  //decrement time value
+
+  //callback function to check time value
   const timerThick = function () {
     if (timeLeft <= 0) {
+      //if timer reaches 0, clear timer, remove quiz container and append game over
       clearInterval(timer);
+
       main.removeChild(document.getElementById("question-container"));
-      //render game over
+
       gameOver();
     } else {
+      //update timer on timer span
       timeLeft -= 1;
       timerSpan.textContent = timeLeft;
     }
@@ -252,6 +275,7 @@ const startTimer = function () {
 
   const timer = setInterval(timerThick, 1000);
 };
+
 //here start quiz function
 const startQuiz = function () {
   //remove start quiz container
