@@ -5,6 +5,7 @@
   --celadon-blue: #457b9dff;
   --prussian-blue: #1d3557ff;
 }
+
 .body {
   background-color: var(--imperial-red);
   font-size: 16px;
@@ -12,29 +13,50 @@
 }
 
 .header {
-  background-color: var(--honeydew);
+  background-color: var(--prussian-blue);
   padding: 3rem;
+  display: flex;
 }
+
 .header h1 {
-  color: var(--prussian-blue);
+  color: var(--honeydew);
   text-align: center;
   font-size: 3rem;
 }
 
-.parent-container {
-  background-color: var(--honeydew);
-  margin: 1rem;
-  padding: 4rem;
-  width: 50%;
+.main {
   display: flex;
   flex-direction: column;
   align-content: center;
 }
 
-.score-item {
+/*div container to which high-scores container is attached styling*/
+.parent-container {
+  margin-top: 3rem;
+  padding: 4rem;
+  position: relative;
+}
+
+.high-scores-container {
   margin: 0.5rem;
   padding: 0.5rem;
-  background-color: var(--powder-blue);
+  width: 50%;
+  background-color: var(--honeydew);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+/*each high score element styling*/
+.high-scores-container li {
+  font-size: 2rem;
+  padding: 1rem;
+  list-style-type: none;
+  text-align: center;
 }
 
 .button-container {
@@ -48,14 +70,27 @@
 .button-container button {
   margin: 2rem;
   padding: 1rem;
+  background-color: var(--celadon-blue);
+  color: var(--honeydew);
+  font-size: 1rem;
+}
+
+.button-container button:hover {
+  margin: 2rem;
+  padding: 1rem;
   background-color: var(--prussian-blue);
   color: var(--honeydew);
   font-size: 1rem;
 }
-.button-container button:hover {
-  margin: 2rem;
-  padding: 1rem;
-  background-color: var(--celadon-blue);
-  color: var(--honeydew);
-  font-size: 1rem;
+
+/*media query properties for small device size*/
+@media screen and (max-width: 576px) {
+  .high-scores-container li {
+    font-size: 1rem;
+    padding: 0;
+  }
+  .button-container {
+    flex-direction: column;
+    align-content: center;
+  }
 }
