@@ -30,6 +30,27 @@ WHEN timer reaches 0 but not all questions have been answered, I am presented wi
 
 Click [here](https://lianavaleria15.github.io/code-quiz/) to view to live deployed application.
 
+## Technical steps
+
+### HTML
+
+- created start quiz container, which contains quiz information and `start quiz ` button
+- built the quiz, game over and submit score containers in here, before building them dynamically in JavaScript
+
+### CSS
+
+- added style properties, used flex property and media queries for responsive design on different viewport sizes
+
+### JAVASCRIPT
+
+- added event listener on `start quiz` button to remove start container on click and render quiz questions
+- added event handler on each `answer button` to submit the answer
+- to check the answer given, used event handler
+- added a timer function to display the time left
+- when all questions were responded, added function to remove `quiz container` and display ` submit score container`
+- added event listener on `submit score` button to set score to local storage
+- in `high-scores.js` file added function to get high scores from local storage and display on page; added event listeners to clear local storage and go back to start quiz page
+
 ## Screenshots
 
 ### Start quiz container
