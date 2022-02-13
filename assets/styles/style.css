@@ -1,0 +1,150 @@
+:root {
+  --imperial-red: #e63946ff;
+  --honeydew: #f1faeeff;
+  --powder-blue: #a8dadcff;
+  --celadon-blue: #457b9dff;
+  --prussian-blue: #1d3557ff;
+}
+
+.body {
+  background-color: var(--imperial-red);
+  font-size: 16px;
+  line-height: 2.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--prussian-blue);
+  color: var(--honeydew);
+  font-size: 2rem;
+  padding: 2rem;
+  width: 100%;
+}
+
+.header a {
+  text-decoration: none;
+  color: var(--honeydew);
+}
+
+.start-container,
+.question-container,
+.game-over-container,
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--honeydew);
+  margin: 10rem 8rem;
+  border: 0.1rem solid var(--prussian-blue);
+  padding: 4rem;
+  height: 40rem;
+}
+
+.start-container h1,
+.question-container h1,
+.game-over-container h1,
+.score-container h1 {
+  color: var(--imperial-red);
+  padding: 2rem;
+  font-size: 2rem;
+}
+
+.start-container h2,
+.game-over-container h2,
+.score-container h2 {
+  color: var(--prussian-blue);
+  text-align: justify;
+}
+
+.start-container p,
+.score-container p {
+  padding: 2rem 0;
+  text-align: justify;
+  font-size: 1.2rem;
+  color: var(--prussian-blue);
+}
+
+.start-btn-container button,
+.game-over-container button,
+.submit-score-container button {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: var(--celadon-blue);
+  color: var(--honeydew);
+  font-size: 1.5rem;
+}
+
+.start-btn-container button:hover,
+.answers-container button:hover,
+.game-over-container button:hover,
+.submit-score-container button:hover {
+  background-color: var(--prussian-blue);
+}
+
+.answers-container {
+  margin: 2rem 8rem;
+  display: flex;
+  flex-wrap: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24rem;
+}
+
+.answers-container button {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  width: 100%;
+  background-color: var(--celadon-blue);
+  color: var(--honeydew);
+}
+
+.game-over-container p {
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.submit-score-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/*media queries properties for different viewport sizes*/
+@media screen and (max-width: 576px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .start-container,
+  .question-container,
+  .answers-container,
+  .game-over-container,
+  .score-container {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .start-container,
+  .question-container,
+  .game-over-container {
+    height: fit-content;
+    width: 100%;
+  }
+
+  .answers-container {
+    width: 100%;
+  }
+}

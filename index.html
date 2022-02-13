@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Quiz | Javascript</title>
+    <!--css stylesheets links-->
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+  </head>
+  <body class="body">
+    <header class="header" id="header">
+      <!--link to high-scores page-->
+      <a href="high-scores.html"> View high scores</a>
+      <!--timer-->
+      <div>Time left: <span id="timer"></span></div>
+    </header>
+
+    <!--start quiz container here-->
+    <main class="main" id="main">
+      <div class="start-container" id="start-container">
+        <h1>Welcome to Javascript Code Quiz!</h1>
+
+        <h2>
+          In the following quiz you will be presented with 5 questions meant to
+          test your Javascript knowledge.
+        </h2>
+
+        <p>
+          You will have 60 seconds to finish the quiz. Be aware, every time you
+          click on a wrong answer, 5 second will be deducted from your remaining
+          time. When you finish the quiz, you can save your score by adding your
+          two name initials and the remaining score. May the Web Development
+          Force be with you! 🤭
+        </p>
+
+        <div class="start-btn-container">
+          <button id="start-button">Start quiz</button>
+        </div>
+      </div>
+    </main>
+    <!--Javascript file linked here-->
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>
